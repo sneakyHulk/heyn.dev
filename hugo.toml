@@ -1,0 +1,82 @@
+baseurl      = "/"
+title        = "heyn.dev"
+languageCode = "en-us"
+paginate     = 10
+
+[params]
+  author.name = "Lukas Heyn"
+
+  title = "heyn.dev"
+
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04"
+
+  # Subtitle for home
+  homeSubtitle = "A small developer blog."
+
+  # Set disableReadOtherPosts to true in order to hide the links to other posts.
+  disableReadOtherPosts = false
+
+  # Enable theme toggle
+  enableThemeToggle = true
+
+  # Enable sharing buttons, if you like
+  enableSharingButtons = true
+
+  # Metadata mostly used in document's head
+  keywords = "homepage, blog"
+  images = [""]
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/sneakyHulk"
+
+  [[params.social]]
+    name = "linkedin"
+    url  = "https://www.linkedin.com/in/lukas-heyn-aa4703219/"
+
+  [[params.social]]
+    name = "stackoverflow"
+    url  = "https://www.stackoverflow.com/users/7674970/sneaky-hulk"
+
+[taxonomies]
+    category = "blog"
+    tag      = "tags"
+    series   = "series"
+
+  [params.favicon.color]
+    mask = "#1b1c1d"
+    msapplication = "#1b1c1d"
+    theme = "#1b1c1d"
+
+  [params.logo]
+    logoMark     = ">"
+    logoText     = "$ cd ~/heyn.dev/"
+    logoHomeLink = "/posts"
+
+  # And you can even create generic menu
+  [[menu.main]]
+    identifier = "blog"
+    name       = "Blog"
+    url        = "/posts"
+  [[menu.main]]
+    identifier = "about"
+    name       = "About"
+    url        = "/"
+
+[privacy]
+  [privacy.disqus]
+    disable = true
+  [privacy.googleAnalytics]
+    disable = true
+  [privacy.instagram]
+    disable = true
+  [privacy.twitter]
+    disable = true
+  [privacy.vimeo]
+    disable = true
+  [privacy.youtube]
+    disable = true
+
