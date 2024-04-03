@@ -2,8 +2,8 @@
 title: "Reflection in C++"
 date: 2022-09-22T00:02:18Z
 draft: false
-comments: false
-images:
+websiteURL: https://heyn.dev
+websiteName: heyn.dev
 ---
 
 Reflection means in the context of programming that a program knows its own structure and/or can change it.

@@ -2,6 +2,8 @@
 title: "How to Use Fritz!Box DynDNS Feature With Cloudflare"
 date: 2023-12-29T00:58:23Z
 draft: false
+websiteURL: https://heyn.dev
+websiteName: heyn.dev
 ---
 
 In the age of cloud storage services like Google Drive and Dropbox, it has become easier than ever to store data online.

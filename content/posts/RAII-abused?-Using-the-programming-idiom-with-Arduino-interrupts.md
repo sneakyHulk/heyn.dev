@@ -2,8 +2,8 @@
 title: "RAII Abused? Using the Programming Idiom With Arduino Interrupts"
 date: 2022-08-17T00:00:19Z
 draft: false
-comments: false
-images:
+websiteURL: https://heyn.dev
+websiteName: heyn.dev
 ---
 
 ## What is RAII?

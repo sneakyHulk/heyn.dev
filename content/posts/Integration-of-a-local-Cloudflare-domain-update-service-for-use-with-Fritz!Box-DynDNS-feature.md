@@ -2,8 +2,8 @@
 title: "Integration of a local Cloudflare domain update service for use with Fritz!Box DynDNS feature"
 date: 2024-03-22T00:02:18Z
 draft: false
-comments: false
-images:
+websiteURL: https://heyn.dev
+websiteName: heyn.dev
 ---
 
 This is a follow-up of the [How-to-use-Fritz!Box-DynDNS-feature-with-cloudflare]({{< ref "How-to-use-Fritz!Box-DynDNS-feature-with-cloudflare.md" >}}) guide.

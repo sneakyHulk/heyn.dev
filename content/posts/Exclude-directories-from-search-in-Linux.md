@@ -2,8 +2,8 @@
 title: "Exclude Directories From Search in Linux"
 date: 2022-01-20T07:57:53Z
 draft: false
-comments: false
-images:
+websiteURL: https://heyn.dev
+websiteName: heyn.dev
 ---
 
 We're all familiar with the scenario, one makes a mistake with the path input and already the file is lost in the file system.
