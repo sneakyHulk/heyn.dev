@@ -12,7 +12,7 @@ WORKDIR /heyn.dev
 
 EXPOSE 1313
 
-HEALTHCHECK --interval=3600s --timeout=20s --retries=3 \
+HEALTHCHECK --interval=10000s --timeout=20s --retries=3 \
     CMD git pull
 
-CMD hugo server --bind="0.0.0.0" --watch --environment="production"
+CMD hugo server --bind="0.0.0.0" --watch --environment="production" --baseUrl=https://heyn.dev/ --appendPort=false
