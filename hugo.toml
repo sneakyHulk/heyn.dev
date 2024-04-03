@@ -1,4 +1,4 @@
-baseurl      = "/"
+baseurl      = "https://heyn.dev/"
 title        = "heyn.dev"
 languageCode = "en-us"
 paginate     = 10
