@@ -175,4 +175,4 @@ Now the Fritz!Box should update the DNS entry every time the ISP change the IP.
 Since after the 7.50 Fritz!OS update http updates don't work anymore.
 Also, we want to create a more organised working context.
 There is another guide on how to integrate this into a docker compose enabled caddy reverse proxied system.
-It can be found at [Integration-of-Cloudflare-domain-update-service-for-use-with-Fritz!Box-DynDNS-feature]({{< ref "Integration-of-Cloudflare-domain-update-service-for-use-with-Fritz!Box-DynDNS-feature.md" >}}).
+It can be found at [Integration-of-a-local-Cloudflare-domain-update-service-for-use-with-Fritz!Box-DynDNS-feature]({{< ref "Integration-of-a-local-Cloudflare-domain-update-service-for-use-with-Fritz!Box-DynDNS-feature.md" >}}).
