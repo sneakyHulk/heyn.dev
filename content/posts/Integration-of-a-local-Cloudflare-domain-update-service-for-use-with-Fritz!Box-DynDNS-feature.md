@@ -1,5 +1,5 @@
 ---
-title: "Integration of Cloudflare domain update service for use with Fritz!Box DynDNS featured"
+title: "Integration of a local Cloudflare domain update service for use with Fritz!Box DynDNS feature"
 date: 2024-03-22T00:02:18Z
 draft: false
 comments: false
