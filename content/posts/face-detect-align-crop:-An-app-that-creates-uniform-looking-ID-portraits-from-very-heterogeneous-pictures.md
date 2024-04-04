@@ -1,6 +1,6 @@
 ---
 title: "face-detect-align-crop: An app that creates uniform looking ID portraits from very heterogeneous pictures"
-date: 2023-12-29T00:58:23Z
+date: 2024-01-04T00:52:24Z
 draft: false
 websiteURL: https://heyn.dev
 websiteName: heyn.dev
