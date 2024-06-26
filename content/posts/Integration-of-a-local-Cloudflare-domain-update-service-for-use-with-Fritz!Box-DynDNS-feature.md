@@ -263,7 +263,7 @@ Thus, we need to customize the caddy installation:
      caddynet:
        external: true
    ```
-7) Now you can start the container running
+6) Now you can start the container running
    ```shell
    docker-compose up -d
    ```
@@ -293,7 +293,7 @@ With the web server and caddy reverse proxy set up, all we need to do is tie eve
    ```shell
    docker exec caddy caddy reload --adapter caddyfile --config /etc/caddy/Caddyfile
    ```
-8) Lastly go again to the Fritz!Box web ui and navigate to http://fritz.box/#dyndns.
+8) Go again to the Fritz!Box web ui and navigate to http://fritz.box/#dyndns.
 9) There put in the following values 
    - Update-URL:
      ```text
@@ -303,5 +303,7 @@ With the web server and caddy reverse proxy set up, all we need to do is tie eve
    - Domainname: The domain you bought from Cloudflare.
    - Benutzername: You can leave it blank, it is not used.
    - Kennwort: The Cloudflare API Token you created earlier.
+10) Lastly navigate to http://fritz.box/#netSet.Scroll down and click on `more settings`.
+    There add `<your domain>` and `dyndns.<your doamin>` to the DNS rebind protection field.
 
 Now that all is set, Fritz!Box can update the IP via the CloudFlare API.
