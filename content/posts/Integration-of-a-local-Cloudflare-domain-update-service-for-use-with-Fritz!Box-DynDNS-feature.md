@@ -279,7 +279,7 @@ With the web server and caddy reverse proxy set up, all we need to do is tie eve
 4) Go to https://dash.cloudflare.com/ and navigate to `Websites`.
    Then click on your domain and after that on `DNS`.
 5) Add a record with type `A`.
-   Use `dyndns' for the name and the local IP from above for the IPv4 address.
+   Use `dyndns` for the name and the local IP from above for the IPv4 address.
 6) Go to the caddy folder and edit the Caddyfile, adding the following:
    ```text
    dyndns.{$MY_DOMAIN} {
@@ -303,7 +303,8 @@ With the web server and caddy reverse proxy set up, all we need to do is tie eve
    - Domainname: The domain you bought from Cloudflare.
    - Benutzername: You can leave it blank, it is not used.
    - Kennwort: The Cloudflare API Token you created earlier.
-10) Lastly navigate to http://fritz.box/#netSet.Scroll down and click on `more settings`.
+10) Lastly navigate to http://fritz.box/#netSet.
+    Scroll down and click on `more settings`.
     There add `<your domain>` and `dyndns.<your doamin>` to the DNS rebind protection field.
 
 Now that all is set, Fritz!Box can update the IP via the CloudFlare API.
