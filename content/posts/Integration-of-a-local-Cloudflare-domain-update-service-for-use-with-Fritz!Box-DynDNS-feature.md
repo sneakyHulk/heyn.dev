@@ -6,7 +6,8 @@ websiteURL: https://heyn.dev
 websiteName: heyn.dev
 ---
 
-This is a follow-up of the [How-to-use-Fritz!Box-DynDNS-feature-with-cloudflare]({{< ref "How-to-use-Fritz!Box-DynDNS-feature-with-cloudflare.md" >}}) guide.
+This is a follow-up of the [How-to-use-Fritz!Box-DynDNS-feature-with-cloudflare]({{< ref "How-to-use-Fritz!
+Box-DynDNS-feature-with-cloudflare.md" >}}) guide.
 As you may have noticed, the solution described in the old guide no longer works with newer versions of Fritz!OS.
 This is because the Fritz!Box doesn't allow http DynDNS updates anymore, even if they point to local IPs.
 This guide will provide an updated solution and clean up the old solution using docker compose.
@@ -16,19 +17,25 @@ This guide will provide an updated solution and clean up the old solution using 
 #### Digital certificates and CAs
 
 A digital certificate is a file hosted on a server to enable encryption.
-It contains the public key and information about it, information about the identity of its owner (called the subject), and the digital signature of an entity that has verified the contents of the certificate (called the issuer).
-This allows others (relying parties) to rely upon signatures or on assertions made about the private key that corresponds to the certified public key.
-The issuer, typically a Certificate Authority (CA), acts as a trusted third party, trusted by both the subject (owner) of the certificate and a relying party (client).
-A client uses the CA certificate to authenticate the CA signature on the server certificate as part of the authorization before initiating a secure connection.
+It contains the public key and information about it, information about the identity of its owner (called the subject),
+and the digital signature of an entity that has verified the contents of the certificate (called the issuer).
+This allows others (relying parties) to rely upon signatures or on assertions made about the private key that
+corresponds to the certified public key.
+The issuer, typically a Certificate Authority (CA), acts as a trusted third party, trusted by both the subject (owner)
+of the certificate and a relying party (client).
+A client uses the CA certificate to authenticate the CA signature on the server certificate as part of the authorization
+before initiating a secure connection.
 Typically, client software, such as browsers, includes a set of trusted CA certificates.
 
 Certificates issued and signed by a trusted CA can then be used to establish secure connections to a server.
-There are essential in order to circumvent a malicious party which happens to be on the route to a target server which acts as if it were the target, i.e. man-in-the-middle attack.
+There are essential in order to circumvent a malicious party which happens to be on the route to a target server which
+acts as if it were the target, i.e. man-in-the-middle attack.
 
 {{<details title="In other, simpler words">}}
 
 A digital certificate is like a passport for a server, ensuring secure and trustworthy communication over the internet.
 It contains:
+
 - A public key for encryption,
 - Information about the owner,
 - Verification from a trusted entity (like a Certificate Authority).
@@ -41,16 +48,21 @@ Without these certificates, attackers are able to intercept communication.
 
 #### ACME Challenges
 
-The Automatic Certificate Management Environment (ACME) protocol is a communications protocol for automating interactions between certificate authorities and their users' servers, enabling the automated deployment of public key infrastructure.
-Let's Encrypt is a certificate authority that uses this protocol to verify that you control the domain names in the certificates you want to get signed using "challenges".
+The Automatic Certificate Management Environment (ACME) protocol is a communications protocol for automating
+interactions between certificate authorities and their users' servers, enabling the automated deployment of public key
+infrastructure.
+Let's Encrypt is a certificate authority that uses this protocol to verify that you control the domain names in the
+certificates you want to get signed using "challenges".
 There are two common challenges:
 
 1) **HTTP**:
-   With the HTTP challenge, the ACME client proves ownership of a domain by placing a specific file at a specific URL on the web server associated with that domain.
+   With the HTTP challenge, the ACME client proves ownership of a domain by placing a specific file at a specific URL on
+   the web server associated with that domain.
    The ACME server then makes an HTTP request to retrieve this file from the specified URL.
-   If the file is found and contains the expected content, the challenge is considered successful. 
+   If the file is found and contains the expected content, the challenge is considered successful.
 2) **DNS**:
-   With the DNS challenge, the ACME client proves ownership of a domain by adding a specific DNS record to the domain's DNS zone.
+   With the DNS challenge, the ACME client proves ownership of a domain by adding a specific DNS record to the domain's
+   DNS zone.
    The ACME server then performs a DNS lookup to verify the presence of this DNS record.
    If the record is found and contains the expected value, the challenge is considered successful.
 
@@ -65,6 +77,7 @@ Before proceeding, make sure you have the following:
 ## Step 1: Create a Cloudflare API Token
 
 {{<details title="Exactly as described in the previous guide">}}
+
 1. Login to your cloudflare account https://dash.cloudflare.com/login.
 2. Then visit https://dash.cloudflare.com/profile/api-tokens
 3. Click on 'Create Token'.
@@ -72,7 +85,7 @@ Before proceeding, make sure you have the following:
 5. (optional) You can restrict the access to a specific domain via the Zone Resources. With "Include - Specific
    zone - `<your domain>`" the API key will only work to modify the DNS records of your specified domain.
 6. Then click on the 'Continue to summary' button, then click on 'Create token' and copy the token for future use.
-{{</details>}}
+   {{</details>}}
 
 ## Step 2: Write the Python Webserver
 
@@ -110,6 +123,7 @@ import waitress
 app.secret_key = os.urandom(24)
 waitress.serve(app, host='0.0.0.0', port=80)
 ```
+
 {{</details>}}
 
 ## Step 3: Setting up Caddy reverse proxy with DNS challenge
@@ -124,7 +138,7 @@ Ideally, this should remain the case.
 However, this means that also the webserver cannot be accessed from the internet.
 But this is essential for the HTTP challenge to obtain a trusted certificate for encryption.
 However, the DNS challenge is appropriate, because it proves ownership of the domain at the DNS provider.
-Unfortunately, the default caddy Docker container does not provide support for the Let's encrypt DNS challenge. 
+Unfortunately, the default caddy Docker container does not provide support for the Let's encrypt DNS challenge.
 Thus, we need to customize the caddy installation:
 
 1) First, create a folder with the name `caddy` and cd into it.
@@ -199,7 +213,8 @@ Thus, we need to customize the caddy installation:
        external: true
    ```
 6) The above docker-compose file specifies an external network.
-   Because we want to organize i.e. encapsulate the various docker containers which are sitting behind the reverse proxy we will use a docker network.
+   Because we want to organize i.e. encapsulate the various docker containers which are sitting behind the reverse proxy
+   we will use a docker network.
    To create it, do the following:
    ```shell
    docker network create caddynet
@@ -267,10 +282,11 @@ Thus, we need to customize the caddy installation:
    ```shell
    docker-compose up -d
    ```
-   
+
 ## Step 5: Associate subdomain with local IP
 
-With the web server and caddy reverse proxy set up, all we need to do is tie everything together to be able to connect to a local IP with https enabled.
+With the web server and caddy reverse proxy set up, all we need to do is tie everything together to be able to connect
+to a local IP with https enabled.
 
 1) Log into Fritz!Box and navigate to http://fritz.box/#homeNet.
 2) Find your server by its hostname and click Edit.
@@ -293,15 +309,17 @@ With the web server and caddy reverse proxy set up, all we need to do is tie eve
    ```shell
    docker exec caddy caddy reload --adapter caddyfile --config /etc/caddy/Caddyfile
    ```
-8) Lastly go again to the Fritz!Box web ui and navigate to http://fritz.box/#dyndns.
-9) There put in the following values 
-   - Update-URL:
-     ```text
-     https://dyndns.<your doamin>/?token=<pass>&zone=<domain>&ipv4=<ipaddr>
-     ```
-     Replace `<your domain>` with the domain you bought from Cloudflare.
-   - Domainname: The domain you bought from Cloudflare.
-   - Benutzername: You can leave it blank, it is not used.
-   - Kennwort: The Cloudflare API Token you created earlier.
+8) Go again to the Fritz!Box web ui and navigate to http://fritz.box/#dyndns.
+9) There put in the following values
+    - Update-URL:
+      ```text
+      https://dyndns.<your doamin>/?token=<pass>&zone=<domain>&ipv4=<ipaddr>
+      ```
+      Replace `<your domain>` with the domain you bought from Cloudflare.
+    - Domainname: The domain you bought from Cloudflare.
+    - Benutzername: You can leave it blank, it is not used.
+    - Kennwort: The Cloudflare API Token you created earlier.
+10) Lastly navigate to http://fritz.box/#netSet.Scroll down and click on `more settings`.
+    There add `<your domain>` and `dyndns.<your doamin>` to the DNS rebind protection field.
 
 Now that all is set, Fritz!Box can update the IP via the CloudFlare API.
